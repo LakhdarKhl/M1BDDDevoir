@@ -34,7 +34,7 @@ public class Answer {
     private Question question;
 
     @Column(name = "score")
-    private Byte score;
+    private Integer score;
 
     @Column(name = "created_at")
     private Instant createdAt;
@@ -63,11 +63,11 @@ public class Answer {
         this.question = question;
     }
 
-    public Byte getScore() {
+    public Integer getScore() {
         return score;
     }
 
-    public void setScore(Byte score) {
+    public void setScore(Integer score) {
         this.score = score;
     }
 
