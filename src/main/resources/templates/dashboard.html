@@ -10,10 +10,26 @@
 </header>
 
 <body>
-
-    <h1>Bienvenue sur notre site</h1>
-    <p>Ceci est la page d'accueil de notre application.</p>
-
+    <h1>Tableau de bord</h1>
+    <p>Cette page regroupe des statistiques moyennes sur l'ensemble des réponses données</p>
+    <div class="stats">
+        <div class="stat">
+            <span th:text="${stats.answersCount}"></span>
+            <h2>Réponses</h2>
+        </div>
+        <div class="stat">
+            <span th:text="${stats.delayRate}"></span>
+            <h2>Délai de livraison</h2>
+        </div>
+        <div class="stat">
+            <span th:text="${stats.packageStateRate}"></span>
+            <h2>Etat du colis</h2>
+        </div>
+        <div class="stat">
+            <span th:text="${stats.deliveryRate}"></span>
+            <h2>Comportement du livreur</h2>
+        </div>
+    </div>
 </body>
 
 <footer>
