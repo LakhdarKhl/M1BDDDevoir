@@ -13,37 +13,16 @@
 <body>
     <a class="btn-gris" href="/">Revenir sur la page d'accueil</a>
     <h2 class="h2-questionnaire">Donner votre avis</h2>
-    <form>
-        <div class="question">
-            <label>Évaluer de 1 à 5 le respect du délai de livraison :</label>
-            <div class="options">
-                <label><input type="radio" name="delai" value="1"> 1</label>
-                <label><input type="radio" name="delai" value="2"> 2</label>
-                <label><input type="radio" name="delai" value="3"> 3</label>
-                <label><input type="radio" name="delai" value="4"> 4</label>
-                <label><input type="radio" name="delai" value="5"> 5</label>
-            </div>
-        </div>
+    <form th:action="@{/reponse}" method="post">
 
-        <div class="question">
-            <label>Évaluer de 1 à 5 l'état de votre colis à sa réception :</label>
+        <div th:each="question : ${questions}" class="question">
+            <label th:text="${question.title}"></label>
             <div class="options">
-                <label><input type="radio" name="etat" value="1"> 1</label>
-                <label><input type="radio" name="etat" value="2"> 2</label>
-                <label><input type="radio" name="etat" value="3"> 3</label>
-                <label><input type="radio" name="etat" value="4"> 4</label>
-                <label><input type="radio" name="etat" value="5"> 5</label>
-            </div>
-        </div>
-
-        <div class="question">
-            <label>Évaluer de 1 à 5 le comportement du livreur :</label>
-            <div class="options">
-                <label><input type="radio" name="comportement" value="1"> 1</label>
-                <label><input type="radio" name="comportement" value="2"> 2</label>
-                <label><input type="radio" name="comportement" value="3"> 3</label>
-                <label><input type="radio" name="comportement" value="4"> 4</label>
-                <label><input type="radio" name="comportement" value="5"> 5</label>
+                <label><input type="radio" th:name="'question_' + ${question.id}" value="1"> 1</label>
+                <label><input type="radio" th:name="'question_' + ${question.id}" value="2"> 2</label>
+                <label><input type="radio" th:name="'question_' + ${question.id}" value="3"> 3</label>
+                <label><input type="radio" th:name="'question_' + ${question.id}" value="4"> 4</label>
+                <label><input type="radio" th:name="'question_' + ${question.id}" value="5"> 5</label>
             </div>
         </div>
 

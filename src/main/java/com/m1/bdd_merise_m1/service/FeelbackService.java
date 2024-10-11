@@ -9,6 +9,6 @@ import java.util.List;
 public interface FeelbackService {
 
     List<StatDTO> getStats();
-    
+
     void addTestDataInDB();
 }
