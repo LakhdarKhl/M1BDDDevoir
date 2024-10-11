@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Questionnaire</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+</head>
+
+<header>
+    <div th:replace="fragments/header :: header"></div>
+</header>
+
+<body>
+    <a class="btn-gris" href="/">Revenir sur la page d'accueil</a>
+    <h2 class="h2-questionnaire">Donner votre avis</h2>
+    <form th:action="@{/reponse}" method="post">
+
+        <div th:each="question : ${questions}" class="question">
+            <label th:text="${question.title}"></label>
+            <div class="options">
+                <label><input type="radio" th:name="'question_' + ${question.id}" value="1" required> 1</label>
+                <label><input type="radio" th:name="'question_' + ${question.id}" value="2" required> 2</label>
+                <label><input type="radio" th:name="'question_' + ${question.id}" value="3" required> 3</label>
+                <label><input type="radio" th:name="'question_' + ${question.id}" value="4" required> 4</label>
+                <label><input type="radio" th:name="'question_' + ${question.id}" value="5" required> 5</label>
+            </div>
+        </div>
+
+        <button type="submit">ENVOYER</button>
+    </form>
+</body>
+
+<footer>
+    <div th:replace="fragments/footer :: footer"></div>
+</footer>
+
+</html>

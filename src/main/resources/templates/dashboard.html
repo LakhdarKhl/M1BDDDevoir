@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+</head>
+
+<header>
+    <div th:replace="fragments/header :: header"></div>
+</header>
+
+<body>
+    <a class="btn-gris" href="/">Revenir sur la page d'accueil</a>
+    <h1>Tableau de bord</h1>
+    <p>Cette page regroupe des statistiques moyennes sur l'ensemble des réponses données</p>
+    <div class="stats">
+        <div class="stat" th:each="stat : ${stats}">
+            <span th:text="${stat.average}"></span>
+            <h2 th:text="${stat.label}"></h2>
+        </div>
+    </div>
+    <a class="btn-gris" href="/delete_data">Reset data</a>
+</body>
+
+<footer>
+    <div th:replace="fragments/footer :: footer"></div>
+</footer>
+
+</html>
