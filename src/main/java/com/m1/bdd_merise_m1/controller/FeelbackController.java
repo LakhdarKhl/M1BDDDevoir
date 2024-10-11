@@ -1,13 +1,10 @@
 package com.m1.bdd_merise_m1.controller;
 
 import com.m1.bdd_merise_m1.dto.StatDTO;
-import com.m1.bdd_merise_m1.repository.FeedbackRepository;
-import com.m1.bdd_merise_m1.repository.OrderRepository;
+import com.m1.bdd_merise_m1.repository.*;
 import com.m1.bdd_merise_m1.service.FeelbackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.m1.bdd_merise_m1.entity.*;
-import com.m1.bdd_merise_m1.repository.QuestionRepository;
-import com.m1.bdd_merise_m1.repository.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +28,8 @@ public class FeelbackController {
     private OrderRepository orderRepository;
     @Autowired
     private FeedbackRepository feedbackRepository;
+    @Autowired
+    private AnswerRepository answerRepository;
 
     @GetMapping("/")
     public String index() {
@@ -47,7 +46,7 @@ public class FeelbackController {
     }
 
     @GetMapping("/questionnaire")
-    public String questionnaire(Model model) {
+    public String questionnaire(Model model, HttpServletRequest request) {
         List<Question> questions = questionRepository.findAll();
         model.addAttribute("questions", questions);
 
@@ -57,18 +56,19 @@ public class FeelbackController {
 
         Feedback f = new Feedback();
         f.setOrder(orderRepository.findAll().get(0));
+
         f = feedbackRepository.save(f);
 
-        model.addAttribute("feedback", f);
+        request.getSession().setAttribute("feedback", f);
 
         return "questionnaire";
     }
 
     @PostMapping("/reponse")
-    public String reponse(HttpServletRequest request, Model model) {
+    public String reponse(HttpServletRequest request) {
         List<Question> questions = questionRepository.findAll();
 
-        Feedback f = (Feedback) model.getAttribute("feedback");
+        Feedback f = (Feedback) request.getSession().getAttribute("feedback");
 
         for (Question question : questions) {
             String response = request.getParameter("question_" + question.getId());
@@ -79,7 +79,14 @@ public class FeelbackController {
             a.setQuestion(question);
             a.setScore(Integer.valueOf(response));
             a.setFeedback(f);
+            answerRepository.save(a);
         }
         return "index";
+    }
+
+    @GetMapping("/delete_data")
+    public String deleteData() {
+        feelbackService.deleteTestDataInDB();
+        return "dashboard";
     }
 }
