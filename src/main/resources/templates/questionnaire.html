@@ -18,11 +18,11 @@
         <div th:each="question : ${questions}" class="question">
             <label th:text="${question.title}"></label>
             <div class="options">
-                <label><input type="radio" th:name="'question_' + ${question.id}" value="1"> 1</label>
-                <label><input type="radio" th:name="'question_' + ${question.id}" value="2"> 2</label>
-                <label><input type="radio" th:name="'question_' + ${question.id}" value="3"> 3</label>
-                <label><input type="radio" th:name="'question_' + ${question.id}" value="4"> 4</label>
-                <label><input type="radio" th:name="'question_' + ${question.id}" value="5"> 5</label>
+                <label><input type="radio" th:name="'question_' + ${question.id}" value="1" required> 1</label>
+                <label><input type="radio" th:name="'question_' + ${question.id}" value="2" required> 2</label>
+                <label><input type="radio" th:name="'question_' + ${question.id}" value="3" required> 3</label>
+                <label><input type="radio" th:name="'question_' + ${question.id}" value="4" required> 4</label>
+                <label><input type="radio" th:name="'question_' + ${question.id}" value="5" required> 5</label>
             </div>
         </div>
 
