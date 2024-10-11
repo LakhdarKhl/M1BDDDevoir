@@ -7,6 +7,7 @@ import com.m1.bdd_merise_m1.entity.Product;
 import com.m1.bdd_merise_m1.entity.Question;
 import com.m1.bdd_merise_m1.entity.User;
 import com.m1.bdd_merise_m1.repository.AnswerRepository;
+import com.m1.bdd_merise_m1.repository.FeedbackRepository;
 import com.m1.bdd_merise_m1.repository.OrderRepository;
 import com.m1.bdd_merise_m1.repository.ProductRepository;
 import com.m1.bdd_merise_m1.repository.QuestionRepository;
@@ -35,24 +36,26 @@ public class FeelbackServiceImpl implements FeelbackService {
     
     @Autowired
     private OrderRepository orderRepository;
+    
+    @Autowired
+    private FeedbackRepository feedbackRepository;
 
     @Override
     public List<StatDTO> getStats() {
         List<Question> questions = questionRepository.findAll();
         List<StatDTO> stats = new ArrayList<>();
         
-        Double totalAnswers = 0.0;
         for (Question question : questions) {
             List<Answer> answers = answerRepository.findByQuestionId(question.getId());
             double total = 0;
             for (Answer answer : answers) {
-                totalAnswers++;
                 total += answer.getScore();
             }
             double average = total / answers.size();
             stats.add(new StatDTO(question.getTitle(), average));
         }
-         
+        
+        Double totalAnswers = (double) feedbackRepository.findAll().size();
         StatDTO totalStat = new StatDTO("Réponses", totalAnswers);
         stats.add(0, totalStat);
         
