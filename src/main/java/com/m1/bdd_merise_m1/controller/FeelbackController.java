@@ -1,7 +1,7 @@
 package com.m1.bdd_merise_m1.controller;
 
 import com.m1.bdd_merise_m1.dto.StatDTO;
-import com.m1.bdd_merise_m1.service.DashboardService;
+import com.m1.bdd_merise_m1.service.FeelbackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +13,7 @@ import java.util.List;
 public class FeelbackController {
     
     @Autowired
-    private DashboardService dashboardService;
+    private FeelbackService dashboardService;
 
     @GetMapping("/")
     public String index() {
