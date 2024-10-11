@@ -46,9 +46,9 @@ public class FeelbackServiceImpl implements FeelbackService {
             List<Answer> answers = answerRepository.findByQuestionId(question.getId());
             double total = 0;
             for (Answer answer : answers) {
+                totalAnswers++;
                 total += answer.getScore();
             }
-            totalAnswers++;
             double average = total / answers.size();
             stats.add(new StatDTO(question.getTitle(), average));
         }
@@ -70,15 +70,18 @@ public class FeelbackServiceImpl implements FeelbackService {
         p1.setName("TV");
         p1.setPriceHt(BigDecimal.valueOf(500));
         p1.setFragile(true);
+        p1.setId(1);
         productRepository.save(p1);
         
         Product p2 = new Product();
         p2.setName("Smartphone");
         p2.setPriceHt(BigDecimal.valueOf(700));
         p2.setFragile(false);
+        p2.setId(2);
         productRepository.save(p2);
 
         Order order = new Order();
+        order.setId(1);
         order.setUser(user);
         order.setTotalPrice(p1.getPriceHt().add(p2.getPriceHt()));
         orderRepository.save(order);

@@ -2,15 +2,19 @@ package com.m1.bdd_merise_m1.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.math.BigDecimal;
-import java.time.Instant;
+import java.time.Instant;import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
 @Table(name = "product", schema = "feelback_db")
 public class Product {
+    
     @Id
     @Column(name = "product_id", nullable = false)
     private Integer id;
@@ -25,6 +29,7 @@ public class Product {
     private Boolean fragile;
 
     @Column(name = "created_at")
+    @Temporal(TemporalType.TIMESTAMP)
     private Instant createdAt;
 
     public Integer getId() {

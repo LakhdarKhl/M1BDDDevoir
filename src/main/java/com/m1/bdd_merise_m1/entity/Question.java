@@ -11,7 +11,8 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import java.time.Instant;
-import java.util.List;
+import java.util.List;import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
 @Table(name = "question", schema = "feelback_db")
@@ -28,6 +29,7 @@ public class Question {
     private String label;
 
     @Column(name = "created_at")
+    @Temporal(TemporalType.TIMESTAMP)
     private Instant createdAt;
 
     public Integer getId() {

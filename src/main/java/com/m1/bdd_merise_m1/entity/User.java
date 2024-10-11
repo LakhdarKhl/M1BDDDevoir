@@ -2,16 +2,19 @@ package com.m1.bdd_merise_m1.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-import java.time.Instant;
+import java.time.Instant;import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
 @Table(name = "user", schema = "feelback_db")
 public class User {
     @Id
     @Column(name = "user_id", nullable = false)
+    @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "name", nullable = false, length = 100)
@@ -21,6 +24,7 @@ public class User {
     private String email;
 
     @Column(name = "created_at")
+    @Temporal(TemporalType.TIMESTAMP)
     private Instant createdAt;
 
     public Integer getId() {
