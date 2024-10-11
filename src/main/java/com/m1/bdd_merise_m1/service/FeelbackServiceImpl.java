@@ -89,4 +89,13 @@ public class FeelbackServiceImpl implements FeelbackService {
         order.setTotalPrice(p1.getPriceHt().add(p2.getPriceHt()));
         orderRepository.save(order);
     }
+
+    @Override
+    public void deleteTestDataInDB() {
+        answerRepository.deleteAll();
+        feedbackRepository.deleteAll();
+        orderRepository.deleteAll();
+        productRepository.deleteAll();
+        userRepository.deleteAll();
+    }
 }

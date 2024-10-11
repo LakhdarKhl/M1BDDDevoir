@@ -11,4 +11,6 @@ public interface FeelbackService {
     List<StatDTO> getStats();
 
     void addTestDataInDB();
+    
+    void deleteTestDataInDB();
 }
